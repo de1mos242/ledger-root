@@ -11,12 +11,10 @@ jobs:
 
     - id: get-credentials
       uses: google-github-actions/get-gke-credentials@main
-      env:
-        GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
       with:
         cluster_name: ledger-k8s
         location: europe-west6-a
-        credentials: "$GCP_CREDENTIALS"
+        credentials: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: 'Deploy'
       uses: elseu/sdu-helm-deploy-action@0.0.5
