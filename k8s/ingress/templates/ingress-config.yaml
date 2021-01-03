@@ -10,5 +10,5 @@ spec:
         paths:
           - path: /*
             backend:
-              serviceName: ledger-recorder-service
+              serviceName: recorder-service
               servicePort: 8080
