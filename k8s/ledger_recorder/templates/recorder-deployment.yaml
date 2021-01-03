@@ -19,6 +19,11 @@ spec:
         - name: recoder-contentainer
           image: {{.Values.image.name}}:{{.Values.image.tag}}
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: {{.Values.limits.requestMem}}
+            limits:
+              memory: {{.Values.limits.maxMem}}
           ports:
             - containerPort: 8080
               name: web
