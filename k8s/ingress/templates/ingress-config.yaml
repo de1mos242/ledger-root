@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ledger-ingress-new
+  name: ledger-ingress-new-gce
   annotations:
     kubernetes.io/ingress.class: "gce"
 spec:
