@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: recorder-config
 data:
-  DB_USERNAME: {{.Values.db.username}}
-  DB_NAME: {{.Values.db.database}}
-  DB_ADDR: {{.Values.db.host}}
-  DB_PORT: {{.Values.db.port}}
+  DB_USERNAME: "{{.Values.db.username}}"
+  DB_NAME: "{{.Values.db.database}}"
+  DB_ADDR: "{{.Values.db.host}}"
+  DB_PORT: "{{.Values.db.port}}"
