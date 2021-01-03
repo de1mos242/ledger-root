@@ -10,7 +10,3 @@ db:
   database: "recorder"
   host: "localhost"
   port: "5432"
-
-limits:
-  requestMem: 128Mi
-  maxMem: 256Mi
