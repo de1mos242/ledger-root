@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ledger-ingress-new
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "gce"
 spec:
   rules:
     - http:
