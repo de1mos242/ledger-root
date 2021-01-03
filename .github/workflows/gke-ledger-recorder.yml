@@ -17,7 +17,7 @@ jobs:
         credentials: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: elseu/sdu-helm-deploy-action@0.0.5
       with:
         helm: 'helm3'
         release: 'recorder-chart'
