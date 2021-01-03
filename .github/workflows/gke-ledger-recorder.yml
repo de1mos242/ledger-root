@@ -1,0 +1,29 @@
+name: Deploy ledger recorder
+on:
+  repository_dispatch:
+    types: [ledger-recorder-released]
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+
+    - id: get-credentials
+      uses: google-github-actions/get-gke-credentials@main
+      with:
+        cluster_name: ledger-k8s
+        location: europe-west6-a
+        credentials: ${{ secrets.GCP_CREDENTIALS }}
+
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        helm: 'helm3'
+        release: 'recorder-chart'
+        namespace: 'ledger'
+        chart: 'k8s/ledger_recorder'
+        token: '${{ github.token }}'
+        values: |
+          image:
+            tag: "${{ github.event.client_payload.version }}"

@@ -1,0 +1,13 @@
+image:
+  name: de1m0s/ledger-recorder
+  tag: "latest"
+
+replicasCount: 2
+
+db:
+  username: "postgres"
+  password: "password"
+  database: "recorder"
+  host: "localhost"
+  port: 5432
+

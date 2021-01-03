@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledger-recorder
+spec:
+  replicas: {{.Values.replicasCount}}
+  selector:
+    matchLabels:
+      app: ledger-recorder
+  template:
+    metadata:
+      labels:
+        app: ledger-recorder
+      annotations:
+        checksum/recoder-config: {{ include (print $.Chart.Name "/templates/recoder-config.yaml") . | sha256sum }}
+        checksum/recorder-db-secrets: {{ include (print $.Chart.Name "/templates/recorder-db-secrets.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: recoder-contentainer
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
+          ports:
+            - containerPort: 8080
+              name: web
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /records
+            initialDelaySeconds: 2
+          envFrom:
+            - configMapRef:
+                name: recorder-config
+            - secretRef:
+                name: recorder-db-secrets
+          env:
+            - name: DATABASE_URI
+              value: postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
