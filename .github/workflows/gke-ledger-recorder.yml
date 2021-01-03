@@ -16,7 +16,7 @@ jobs:
       with:
         cluster_name: ledger-k8s
         location: europe-west6-a
-        credentials: $GCP_CREDENTIALS
+        credentials: "$GCP_CREDENTIALS"
 
     - name: 'Deploy'
       uses: elseu/sdu-helm-deploy-action@0.0.5
