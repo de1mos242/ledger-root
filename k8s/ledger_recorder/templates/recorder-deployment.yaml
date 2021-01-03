@@ -12,7 +12,7 @@ spec:
       labels:
         app: ledger-recorder
       annotations:
-        checksum/recoder-config: {{ include (print $.Chart.Name "/templates/recoder-config.yaml") . | sha256sum }}
+        checksum/recoder-config: {{ include (print $.Chart.Name "/templates/recorder-config.yaml") . | sha256sum }}
         checksum/recorder-db-secrets: {{ include (print $.Chart.Name "/templates/recorder-db-secrets.yaml") . | sha256sum }}
     spec:
       containers:
