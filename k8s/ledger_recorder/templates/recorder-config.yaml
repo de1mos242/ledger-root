@@ -7,3 +7,7 @@ data:
   DB_NAME: "{{.Values.db.database}}"
   DB_ADDR: "{{.Values.db.host}}"
   DB_PORT: "{{.Values.db.port}}"
+
+  BPL_JVM_HEAD_ROOM: "2"
+  BPL_JVM_LOADED_CLASS_COUNT: "35"
+  BPL_JVM_THREAD_COUNT: "10"

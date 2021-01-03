@@ -12,5 +12,5 @@ db:
   port: "5432"
 
 limits:
-  requestMem: 256Mi
-  maxMem: 512Mi
+  requestMem: 128Mi
+  maxMem: 256Mi
