@@ -4,9 +4,13 @@ metadata:
   name: ledger-ingress-new-gce
   annotations:
     kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: {{.Values.externalAddress}}
+    networking.gke.io/managed-certificates: ledger-web
+    kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
-    - http:
+    - host: {{.Values.services.web}}
+      http:
         paths:
           - path: /*
             backend:
