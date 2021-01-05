@@ -37,6 +37,6 @@ jobs:
             username: "postgres"
             password: "${{ secrets.PG_PASSWORD }}"
             database: "ledger-recorder"
-            host: "postgresql"
+            host: "postgres-chart-postgresql"
             port: "5432"
 
