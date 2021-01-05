@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ledger-ingress-new-gce
+  name: ledger-ingress-gce
   annotations:
     kubernetes.io/ingress.class: "gce"
     kubernetes.io/ingress.global-static-ip-name: {{.Values.externalAddress}}
