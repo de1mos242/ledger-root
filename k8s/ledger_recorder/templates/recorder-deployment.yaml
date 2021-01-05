@@ -33,5 +33,9 @@ spec:
             - secretRef:
                 name: recorder-db-secrets
           env:
-            - name: DATABASE_URI
-              value: postgres://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
+            - name: SPRING_R2DBC_URL
+              value: r2dbc:postgresql://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
+            - name: SPRING_LIQUIBASE_URL
+              value: r2dbc:postgresql://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
+            - name: SPRING_DATASOURCE_URL
+              value: r2dbc:postgresql://$(DB_USERNAME):$(DB_PASSWORD)@$(DB_ADDR):$(DB_PORT)/$(DB_NAME)

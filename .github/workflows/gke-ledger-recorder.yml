@@ -33,3 +33,10 @@ jobs:
         values: |
           image:
             tag: "${{ github.event.client_payload.version }}${{ github.event.inputs.version }}"
+          db:
+            username: "postgres"
+            password: "${{ secrets.PG_PASSWORD }}"
+            database: "ledger-recorder"
+            host: "postgresql"
+            port: "5432"
+

@@ -1,0 +1,7 @@
+postgresql:
+  postgresqlPassword: secretPassword
+  persistence:
+    size: 5Gi
+  initdbScripts:
+    create_databases.sql: |
+      CREATE DATABASE ledger-recorder;
