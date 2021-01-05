@@ -1,4 +1,4 @@
-externalAddress: "ledgerip"
+externalAddress: "localhost"
 
 services:
   web: lg.de1mos.net

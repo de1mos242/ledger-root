@@ -27,4 +27,4 @@ jobs:
         chart: 'k8s/ingress'
         token: '${{ github.token }}'
         values: |
-          externalAddress: "34.107.238.214"
+          externalAddress: "ledgerip"
