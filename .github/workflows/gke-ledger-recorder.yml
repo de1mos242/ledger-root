@@ -22,9 +22,6 @@ jobs:
         location: europe-west6-a
         credentials: ${{ secrets.GCP_CREDENTIALS }}
 
-    - name: debug pass
-      run: echo "${{ secrets.PG_PASSWORD }}"
-
     - name: 'Deploy'
       uses: elseu/sdu-helm-deploy-action@0.0.5
       with:
