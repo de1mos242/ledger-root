@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledger-web
+spec:
+  replicas: {{.Values.replicasCount}}
+  selector:
+    matchLabels:
+      app: ledger-web
+  template:
+    metadata:
+      labels:
+        app: ledger-web
+    spec:
+      containers:
+        - name: web-contentainer
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: web
+          readinessProbe:
+            httpGet:
+              port: 3000
+              path: /
+            initialDelaySeconds: 2
+            failureThreshold: 10

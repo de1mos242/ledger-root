@@ -1,0 +1,5 @@
+image:
+  name: de1m0s/ledger-web
+  tag: "latest"
+
+replicasCount: 2

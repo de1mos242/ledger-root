@@ -1,0 +1,11 @@
+apiVersion: v2
+name: ledger_web
+version: 0.0.1
+description: Ledger web
+type: application
+sources:
+  - https://github.com/de1mos242/ledger-web
+maintainers:
+  - name: Yakovlev Denis
+    email: de1m0s242@gmail.com
+appVersion: "v0.0.1"
