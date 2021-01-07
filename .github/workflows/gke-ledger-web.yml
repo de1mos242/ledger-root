@@ -1,4 +1,4 @@
-name: Deploy ledger recorder
+name: Deploy ledger web
 on:
   repository_dispatch:
     types: [ledger-web-released]
