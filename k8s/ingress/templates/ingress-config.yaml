@@ -18,5 +18,5 @@ spec:
               servicePort: 8080
           - path: /*
             backend:
-              serviceName: recorder-web
+              serviceName: web-service
               servicePort: 3000
