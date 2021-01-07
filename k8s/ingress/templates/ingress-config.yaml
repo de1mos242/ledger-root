@@ -12,10 +12,10 @@ spec:
     - host: {{.Values.services.web}}
       http:
         paths:
-          - path: /api/recorder/*
+          - path: /api/*
             backend:
-              serviceName: recorder-service
-              servicePort: 8080
+              serviceName: gateway-service
+              servicePort: 8081
           - path: /*
             backend:
               serviceName: web-service

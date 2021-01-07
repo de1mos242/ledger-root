@@ -12,8 +12,8 @@ spec:
       labels:
         app: ledger-recorder
       annotations:
-        checksum/recoder-config: {{ include (print $.Chart.Name "/templates/recorder-config.yaml") . | sha256sum }}
-        checksum/recorder-db-secrets: {{ include (print $.Chart.Name "/templates/recorder-secrets.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Chart.Name "/templates/recorder-config.yaml") . | sha256sum }}
+        checksum/secrets: {{ include (print $.Chart.Name "/templates/recorder-secrets.yaml") . | sha256sum }}
     spec:
       containers:
         - name: recoder-contentainer

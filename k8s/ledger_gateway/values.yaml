@@ -1,0 +1,7 @@
+image:
+  name: de1m0s/ledger-gateway
+  tag: "latest"
+
+replicasCount: 2
+
+recorderUrl: http://recorder-service:8080

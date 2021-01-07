@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledger-gateway
+spec:
+  replicas: {{.Values.replicasCount}}
+  selector:
+    matchLabels:
+      app: ledger-gateway
+  template:
+    metadata:
+      labels:
+        app: ledger-gateway
+      annotations:
+        checksum/config: {{ include (print $.Chart.Name "/templates/gateway-config.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: gateway-contentainer
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+              name: web
+          readinessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health
+            initialDelaySeconds: 10
+            failureThreshold: 10
+
+          envFrom:
+            - configMapRef:
+                name: gateway-config

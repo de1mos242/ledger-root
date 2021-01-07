@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-config
+data:
+  BPL_JVM_THREAD_COUNT: "10"
+
+  RECORDER_URL: "{{.Values.recorderUrl}}"
