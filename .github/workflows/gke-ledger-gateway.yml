@@ -26,7 +26,7 @@ jobs:
       uses: elseu/sdu-helm-deploy-action@0.0.5
       with:
         helm: 'helm3'
-        release: 'recorder-chart'
+        release: 'gateway-chart'
         namespace: 'ledger'
         chart: 'k8s/ledger_gateway'
         token: '${{ github.token }}'
