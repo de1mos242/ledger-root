@@ -5,3 +5,4 @@ postgresql:
   initdbScripts:
     create_databases.sql: |
       CREATE DATABASE ledger-recorder;
+      CREATE DATABASE keycloak;

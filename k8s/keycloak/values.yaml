@@ -4,3 +4,12 @@ keycloak:
 
   service:
     type: NodePort
+
+  postgresql:
+    enabled: false
+
+  externalDatabase:
+    host: postgres-chart-postgresql
+    user: postgres
+    password:
+    database: keycloak

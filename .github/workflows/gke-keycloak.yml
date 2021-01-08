@@ -30,4 +30,7 @@ jobs:
         values: |
           keycloak:
             auth:
-              adminPassword: ${{ secrets.KEYCLOAK_PASSWORD }}
+              adminPassword: "${{ secrets.KEYCLOAK_PASSWORD }}"
+            externalDatabase:
+              password: "${{ secrets.PG_PASSWORD }}"
+
