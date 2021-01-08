@@ -24,3 +24,5 @@ keycloak:
     failureThreshold: 50
     successThreshold: 1
 
+  proxyAddressForwarding: true
+
