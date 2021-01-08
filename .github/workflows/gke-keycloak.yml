@@ -26,7 +26,7 @@ jobs:
         namespace: 'ledger'
         chart: 'k8s/keycloak'
         token: '${{ github.token }}'
-        timeout: 900s
+        timeout: 600s
         values: |
           keycloak:
             auth:
