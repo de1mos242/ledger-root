@@ -24,6 +24,6 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: keycloak-chart
+              serviceName: keycloak-oauth
               servicePort: 80
             path: /*
