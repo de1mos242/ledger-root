@@ -22,12 +22,12 @@ spec:
           ports:
             - containerPort: 8081
               name: web
-          readinessProbe:
-            httpGet:
-              port: 8081
-              path: /actuator/health
-            initialDelaySeconds: 10
-            failureThreshold: 10
+{{/*          readinessProbe:*/}}
+{{/*            httpGet:*/}}
+{{/*              port: 8081*/}}
+{{/*              path: /actuator/health*/}}
+{{/*            initialDelaySeconds: 10*/}}
+{{/*            failureThreshold: 10*/}}
 
           envFrom:
             - configMapRef:
