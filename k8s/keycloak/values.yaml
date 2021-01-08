@@ -1,0 +1,6 @@
+keycloak:
+  auth:
+    adminUser: admin
+
+  service:
+    type: NodePort
