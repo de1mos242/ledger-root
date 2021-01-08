@@ -9,3 +9,6 @@ data:
   DB_PORT: "{{.Values.db.port}}"
 
   BPL_JVM_THREAD_COUNT: "10"
+
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER-URI: "{{.Values.keycloak.issuerUri}}"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: "{{.Values.keycloak.jwkSetUri}}"
