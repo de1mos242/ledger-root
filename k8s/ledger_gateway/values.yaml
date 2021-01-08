@@ -5,3 +5,10 @@ image:
 replicasCount: 2
 
 recorderUrl: http://recorder-service:8080
+
+keycloak:
+  issuerUri: https://auth.lg.de1mos.net/auth/realms/ledger
+  clientId: ledger-client
+  clientSecret: secret
+
+loginRedirect: https://lg.de1mos.net

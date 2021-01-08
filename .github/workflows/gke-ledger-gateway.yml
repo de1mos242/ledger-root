@@ -33,4 +33,6 @@ jobs:
         values: |
           image:
             tag: "${{ github.event.client_payload.version }}${{ github.event.inputs.version }}"
+          keycloak:
+            clientSecret: "${{ secrets.KEYCLOAK_CLIENT_SECRET }}"
 

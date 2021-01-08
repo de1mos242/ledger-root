@@ -6,3 +6,8 @@ data:
   BPL_JVM_THREAD_COUNT: "10"
 
   RECORDER_URL: "{{.Values.recorderUrl}}"
+
+  SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER-URI: "{{.Values.keycloak.issuerUri}}"
+  SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_KEYCLOAK_CLIENT-ID: "{{.Values.keycloak.clientId}}"
+
+  LOGIN_REDIRECT: "{{.Values.loginRedirect}}"

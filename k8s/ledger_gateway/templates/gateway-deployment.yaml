@@ -13,6 +13,7 @@ spec:
         app: ledger-gateway
       annotations:
         checksum/config: {{ include (print $.Chart.Name "/templates/gateway-config.yaml") . | sha256sum }}
+        checksum/secrets: {{ include (print $.Chart.Name "/templates/gateway-secrets.yaml") . | sha256sum }}
     spec:
       containers:
         - name: gateway-contentainer
@@ -31,3 +32,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: gateway-config
+            - secretRef:
+                name: gateway-secrets
