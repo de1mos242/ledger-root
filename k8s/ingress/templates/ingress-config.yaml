@@ -20,3 +20,10 @@ spec:
             backend:
               serviceName: web-service
               servicePort: 3000
+    - host: auth.lg.de1mos.net
+      http:
+        paths:
+          - backend:
+              serviceName: keycloak-chart
+              servicePort: 80
+            path: /*
