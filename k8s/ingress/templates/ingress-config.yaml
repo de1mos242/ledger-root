@@ -16,6 +16,10 @@ spec:
             backend:
               serviceName: gateway-service
               servicePort: 8081
+          - path: /oauth2/*
+            backend:
+              serviceName: gateway-service
+              servicePort: 8081
           - path: /*
             backend:
               serviceName: web-service
