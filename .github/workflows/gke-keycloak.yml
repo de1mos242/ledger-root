@@ -22,7 +22,7 @@ jobs:
       uses: elseu/sdu-helm-deploy-action@0.0.5
       with:
         helm: 'helm3'
-        release: 'keycloak-chart'
+        release: 'keycloak-app'
         namespace: 'ledger'
         chart: 'k8s/keycloak'
         token: '${{ github.token }}'
