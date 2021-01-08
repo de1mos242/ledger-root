@@ -5,7 +5,7 @@ description: Keycloak deployment
 type: application
 dependencies:
   - name: keycloak
-    version: 1.1.7
+    version: 1.2.0
     repository: https://charts.bitnami.com/bitnami/
 maintainers:
   - name: Yakovlev Denis
