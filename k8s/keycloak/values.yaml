@@ -13,3 +13,6 @@ keycloak:
     user: postgres
     password:
     database: keycloak
+
+  image:
+    debug: true
