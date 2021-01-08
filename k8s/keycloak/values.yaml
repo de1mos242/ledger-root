@@ -18,9 +18,9 @@ keycloak:
     debug: true
 
   livenessProbe:
-    initialDelaySeconds: 500
+    initialDelaySeconds: 900
     periodSeconds: 10
     timeoutSeconds: 5
-    failureThreshold: 30
+    failureThreshold: 50
     successThreshold: 1
 
