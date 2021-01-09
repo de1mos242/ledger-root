@@ -30,3 +30,8 @@ services:
       - KEYCLOAK_DATABASE_PASSWORD=keycloak
     depends_on:
       - keycloak-db
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"

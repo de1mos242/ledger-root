@@ -1,0 +1,13 @@
+apiVersion: v2
+name: redis-chart
+version: 0.0.1
+description: Redis deployment
+type: application
+dependencies:
+  - name: redis
+    version: 12.3.3
+    repository: https://charts.bitnami.com/bitnami/
+maintainers:
+  - name: Yakovlev Denis
+    email: de1m0s242@gmail.com
+appVersion: "v0.0.1"
