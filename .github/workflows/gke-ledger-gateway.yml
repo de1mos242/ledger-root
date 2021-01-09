@@ -30,6 +30,7 @@ jobs:
         namespace: 'ledger'
         chart: 'k8s/ledger_gateway'
         token: '${{ github.token }}'
+        timeout: 1200s
         values: |
           image:
             tag: "${{ github.event.client_payload.version }}${{ github.event.inputs.version }}"
