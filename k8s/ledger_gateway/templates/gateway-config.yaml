@@ -11,3 +11,5 @@ data:
   SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_KEYCLOAK_CLIENT-ID: "{{.Values.keycloak.clientId}}"
 
   LOGIN_REDIRECT: "{{.Values.loginRedirect}}"
+
+  SPRING_REDIS_HOST: "{{.Values.redis.host}}"

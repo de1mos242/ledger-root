@@ -12,3 +12,7 @@ keycloak:
   clientSecret: secret
 
 loginRedirect: https://lg.de1mos.net
+
+redis:
+  host: redis-chart-master
+  password:
