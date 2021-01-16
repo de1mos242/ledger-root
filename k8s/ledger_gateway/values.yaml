@@ -11,7 +11,7 @@ keycloak:
   clientId: ledger-client
   clientSecret: secret
 
-loginRedirect: https://lg.de1mos.net
+loginRedirect: https://lg.de1mos.net/success-login
 
 redis:
   host: redis-chart-master
