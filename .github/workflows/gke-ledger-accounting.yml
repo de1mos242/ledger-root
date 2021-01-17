@@ -1,0 +1,42 @@
+name: Deploy ledger accounting
+on:
+  repository_dispatch:
+    types: [ledger-accounting-released]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy'
+        required: true
+        default: 'latest'
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+
+    - id: get-credentials
+      uses: google-github-actions/get-gke-credentials@main
+      with:
+        cluster_name: ledger-k8s
+        location: europe-west6-a
+        credentials: ${{ secrets.GCP_CREDENTIALS }}
+
+    - name: 'Deploy'
+      uses: elseu/sdu-helm-deploy-action@0.0.5
+      with:
+        helm: 'helm3'
+        release: 'accounting-chart'
+        namespace: 'ledger'
+        chart: 'k8s/ledger_accounting'
+        token: '${{ github.token }}'
+        values: |
+          image:
+            tag: "${{ github.event.client_payload.version }}${{ github.event.inputs.version }}"
+          db:
+            username: "postgres"
+            password: "${{ secrets.PG_PASSWORD }}"
+            database: "ledger-accounting"
+            host: "postgres-chart-postgresql"
+            port: "5432"
+

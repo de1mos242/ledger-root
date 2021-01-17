@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ledger-accounting
+spec:
+  replicas: {{.Values.replicasCount}}
+  selector:
+    matchLabels:
+      app: ledger-accounting
+  template:
+    metadata:
+      labels:
+        app: ledger-accounting
+      annotations:
+        checksum/config: {{ include (print $.Chart.Name "/templates/accounting-config.yaml") . | sha256sum }}
+        checksum/secrets: {{ include (print $.Chart.Name "/templates/accounting-secrets.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: accounting-contantainer
+          image: {{.Values.image.name}}:{{.Values.image.tag}}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+              name: web
+          readinessProbe:
+            httpGet:
+              port: 8082
+              path: /actuator/health
+            initialDelaySeconds: 20
+            failureThreshold: 10
+
+          envFrom:
+            - configMapRef:
+                name: accounting-config
+            - secretRef:
+                name: accounting-db-secrets
+          env:
+            - name: SPRING_R2DBC_URL
+              value: r2dbc:postgresql://$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
+            - name: SPRING_R2DBC_USERNAME
+              value: $(DB_USERNAME)
+            - name: SPRING_R2DBC_PASSWORD
+              value: $(DB_PASSWORD)
+            - name: SPRING_LIQUIBASE_URL
+              value: jdbc:postgresql://$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
+            - name: SPRING_LIQUIBASE_USER
+              value: $(DB_USERNAME)
+            - name: SPRING_LIQUIBASE_PASSWORD
+              value: $(DB_PASSWORD)
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://$(DB_ADDR):$(DB_PORT)/$(DB_NAME)
+            - name: SPRING_DATASOURCE_USERNAME
+              value: $(DB_USERNAME)
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: $(DB_PASSWORD)

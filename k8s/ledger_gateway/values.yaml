@@ -5,6 +5,7 @@ image:
 replicasCount: 2
 
 recorderUrl: http://recorder-service:8080
+accountingUrl: http://accounting-service:8082
 
 keycloak:
   issuerUri: https://auth.lg.de1mos.net/auth/realms/ledger

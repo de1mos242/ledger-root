@@ -1,0 +1,16 @@
+image:
+  name: de1m0s/ledger-accounting
+  tag: "latest"
+
+replicasCount: 2
+
+db:
+  username: "postgres"
+  password: "password"
+  database: "accounting"
+  host: "localhost"
+  port: "5432"
+
+keycloak:
+  issuerUri: https://auth.lg.de1mos.net/auth/realms/ledger
+  jwkSetUri: https://auth.lg.de1mos.net/auth/realms/ledger/protocol/openid-connect/certs
