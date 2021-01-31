@@ -13,4 +13,4 @@ data:
   SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER-URI: "{{.Values.keycloak.issuerUri}}"
   SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: "{{.Values.keycloak.jwkSetUri}}"
 
-  SPRINT_KAFKA_BOOTSTRAP_SERVERS: "{{.Values.kafkaBroker}}"
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: "{{.Values.kafkaBroker}}"
