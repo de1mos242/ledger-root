@@ -29,6 +29,12 @@ spec:
             initialDelaySeconds: 20
             failureThreshold: 10
 
+          resources:
+            requests:
+              memory: 450Mi
+            limits:
+              memory: 600Mi
+
           envFrom:
             - configMapRef:
                 name: accounting-config
