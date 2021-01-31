@@ -21,6 +21,8 @@ spec:
           env:
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
               value: kafka-chart:9092
+            - name: KAFKA_CLUSTERS_0_NAME
+              value: kafka-chart
           readinessProbe:
             httpGet:
               port: 8080
