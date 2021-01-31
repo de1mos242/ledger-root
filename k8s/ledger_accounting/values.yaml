@@ -14,3 +14,5 @@ db:
 keycloak:
   issuerUri: https://auth.lg.de1mos.net/auth/realms/ledger
   jwkSetUri: https://auth.lg.de1mos.net/auth/realms/ledger/protocol/openid-connect/certs
+
+kafkaBroker: kafka-chart:9092
