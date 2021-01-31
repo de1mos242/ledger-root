@@ -2,7 +2,8 @@ postgresql:
   postgresqlPassword: secretPassword
   persistence:
     size: 5Gi
-  initdbScripts:
-    create_databases.sql: |
-      CREATE DATABASE ledger-recorder;
-      CREATE DATABASE keycloak;
+initdbScripts:
+  create_databases.sql: |
+    CREATE DATABASE "ledger-recorder";
+    CREATE DATABASE "ledger-accounting";
+    CREATE DATABASE keycloak;
