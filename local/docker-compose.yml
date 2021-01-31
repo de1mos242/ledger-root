@@ -4,6 +4,10 @@ services:
     image: postgres
     environment:
       POSTGRES_HOST_AUTH_METHOD: "trust"
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
     ports:
       - 15432:5432
 
@@ -35,3 +39,54 @@ services:
     image: redis
     ports:
       - "6379:6379"
+
+  zookeeper:
+    image: 'docker.io/bitnami/zookeeper:3-debian-10'
+    ports:
+      - '2181:2181'
+    volumes:
+      - 'zookeeper_data:/bitnami'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: 'docker.io/bitnami/kafka:2-debian-10'
+    ports:
+      - '9092:9092'
+      - '9094:9094'
+    volumes:
+      - 'kafka_data:/bitnami'
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,OUTSIDE://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,OUTSIDE://localhost:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    depends_on:
+      - zookeeper
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    ports:
+      - '7080:8080'
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+
+  kafka-connector:
+    image: debezium/connect
+    ports:
+      - '8083:8083'
+    environment:
+      - GROUP_ID=1
+      - CONFIG_STORAGE_TOPIC=ledger_configs
+      - OFFSET_STORAGE_TOPIC=ledger_offsets
+      - STATUS_STORAGE_TOPIC=ledger_statuses
+      - BOOTSTRAP_SERVERS=kafka:9092
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local

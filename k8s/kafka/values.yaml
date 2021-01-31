@@ -1,0 +1,4 @@
+kafka:
+  persistence:
+    size: 5Gi
+

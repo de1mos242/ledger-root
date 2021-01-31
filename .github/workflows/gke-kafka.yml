@@ -1,0 +1,28 @@
+name: Deploy kafka
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: [ 'master' ]
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+
+    - id: get-credentials
+      uses: google-github-actions/get-gke-credentials@main
+      with:
+        cluster_name: ledger-k8s
+        location: europe-west6-a
+        credentials: ${{ secrets.GCP_CREDENTIALS }}
+
+    - name: 'Deploy'
+      uses: elseu/sdu-helm-deploy-action@0.0.5
+      with:
+        helm: 'helm3'
+        release: 'kafka-chart'
+        namespace: 'ledger'
+        chart: 'k8s/kafka'
+        token: '${{ github.token }}'
