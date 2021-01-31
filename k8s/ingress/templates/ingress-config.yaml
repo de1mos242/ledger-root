@@ -5,7 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "gce"
     kubernetes.io/ingress.global-static-ip-name: {{.Values.externalAddress}}
-    networking.gke.io/managed-certificates: ledger-web,keycloak-cert
+    networking.gke.io/managed-certificates: ledger-web,keycloak-cert,kafka-cert
     kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
@@ -34,4 +34,12 @@ spec:
           - backend:
               serviceName: keycloak-oauth
               servicePort: 80
+            path: /*
+
+    - host: kafka.lg.de1mos.net
+      http:
+        paths:
+          - backend:
+              serviceName: kafka-ui
+              servicePort: 8080
             path: /*
