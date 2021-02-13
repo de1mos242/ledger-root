@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-debezium-connect-create-connect-hook"
+  labels:
+    app.kubernetes.io/managed-by: "helm"
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-5"
+{{/*    "helm.sh/hook-delete-policy": hook-succeeded*/}}
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-debezium-connect-create-connect-hook"
+      labels:
+        app.kubernetes.io/managed-by: "helm"
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-install-job
+          image: "alpine:3.3"
+          command:
+            - sh
+            - "-c"
+            - |
+              /bin/bash <<'EOF'
+              curl -X DELETE debezium-connect:8083/connectors/lg-accounting-connector;
+              curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" debezium-connect:8083/connectors/ -d '{
+                  "name": "lg-accounting-connector",
+                  "config": {
+                    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+                    "database.hostname": "{{.Values.db.host}}",
+                    "database.port": "{{.Values.db.port}}",
+                    "database.user": "{{.Values.db.username}}",
+                    "database.password": "{{.Values.db.password}}",
+                    "database.dbname" : "{{.Values.db.database}}",
+                    "database.server.name": "lg-accounting",
+                    "table.include.list": "public.a2u_events",
+                    "plugin.name": "pgoutput"
+                  }
+                }'
+              EOF
+              

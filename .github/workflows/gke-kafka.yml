@@ -26,3 +26,10 @@ jobs:
         namespace: 'ledger'
         chart: 'k8s/kafka'
         token: '${{ github.token }}'
+        values: |
+          db:
+            username: "postgres"
+            password: "${{ secrets.PG_PASSWORD }}"
+            database: "ledger-accounting"
+            host: "postgres-chart-postgresql"
+            port: "5432"
