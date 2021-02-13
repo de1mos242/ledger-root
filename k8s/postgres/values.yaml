@@ -7,3 +7,6 @@ postgresql:
       CREATE DATABASE "ledger-recorder";
       CREATE DATABASE "ledger-accounting";
       CREATE DATABASE keycloak;
+
+  postgresqlConfiguration:
+    wal_level=logical
