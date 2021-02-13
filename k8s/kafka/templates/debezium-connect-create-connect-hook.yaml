@@ -30,7 +30,7 @@ spec:
             - sh
             - "-c"
             - |
-              /bin/bash <<'EOF'
+              /bin/sh <<'EOF'
               curl -X DELETE debezium-connect:8083/connectors/lg-accounting-connector;
               curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" debezium-connect:8083/connectors/ -d '{
                   "name": "lg-accounting-connector",
