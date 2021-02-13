@@ -9,4 +9,4 @@ postgresql:
       CREATE DATABASE keycloak;
 
   postgresqlConfiguration:
-    wal_level=logical
+    walLevel: logical
