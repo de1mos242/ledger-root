@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-debezium-connect-create-connect-hook"
+  name: "{{ .Release.Name }}-debezium-connect-create-connect-hook2"
   labels:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -16,7 +16,7 @@ metadata:
 spec:
   template:
     metadata:
-      name: "{{ .Release.Name }}-debezium-connect-create-connect-hook"
+      name: "{{ .Release.Name }}-debezium-connect-create-connect-hook3"
       labels:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
