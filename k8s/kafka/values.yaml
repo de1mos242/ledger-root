@@ -2,7 +2,7 @@ kafka:
   persistence:
     size: 5Gi
 
-kafkaUrl: kafka-chart:9092
+kafkaUrl: kafka-chart-0.kafka-chart-headless.ledger.svc.cluster.local:9092
 
 db:
   username: "postgres"
